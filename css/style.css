@@ -6,12 +6,30 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
   gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .card {
   border: 2px solid black;
   display: grid;
   gap: 8px;
+}
+
+.toast {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 35px 20px 25px;
+  border-radius: 12px;
+  position: absolute;
+  top: 8rem;
+  right: 35px;
+}
+
+.toast__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 

@@ -2,7 +2,7 @@
 // https://api.escuelajs.co/api/v1/products
 
 const cardsContainer = document.querySelector('.cards');
-const productsCartContainer = document.querySelector('.productos');
+// const productsCartContainer = document.querySelector('.productos');
 
 document.addEventListener('DOMContentLoaded', fetchData)
 
@@ -12,7 +12,7 @@ async function fetchData() {
     const response = await fetch(url);
     const data = await response.json();
     // console.log(data);
-    showProductsCards(data);
+    // showProductsCards(data);
   } catch (error) {
     console.log(error);
   }
@@ -61,61 +61,62 @@ if (cartLS) {
 function addToCart(idButton, products) {
   const addedProduct = products.find(product => product.id === idButton);
 
-  if (cart.some(product => product.id === idButton)) {
+  if (cart.some(product => product[0].id === idButton)) {
     // Si ya existe en el cart mandar un "toast" que notifique que ya esta en el carrito
     console.log('The product is already in the cart');
     // toastNotification('The product is already in the cart');
     // console.log(cart);
+    // productoAAumentar.cantidad ++;
+    const productoAAumentar = cart.find(product => product[0].id === idButton);
+    productoAAumentar[1] ++;
   } else {
     // Si no existe en el cart, agregarlo
-    cart = [...cart, addedProduct];
+    // cart = [...cart, addedProduct];
+    cart = [...cart, [addedProduct, 1]];
     console.log('Product added correctly');
     console.log(cart);
+    // console.log(cart[0]);
   }
 
-  // guardarLocalStorage();
+  guardarLocalStorage();
   
-  showCartProductsHTML(idButton, products);
+  // showCartProductsHTML(idButton, products);
 }
 
-function showCartProductsHTML(idButton, products) {
+// function showCartProductsHTML(idButton, products) {
 
-  cleanHTMLCart();
+//   cleanHTMLCart();
 
-  // const addedProduct = products.find(product => product.id === idButton);
+//   cart.forEach(product => {
+//     const divProduct = document.createElement('div');
+//     divProduct.classList.add('producto');
+//     divProduct.innerHTML = `
+//       <div class="producto__info">
+//         <p class="producto__nombre"> ${product.title} </p>
+//         <p class="producto__precio">
+//             Precio:
+//             <span> ${product.price} </span>
+//         </p>
 
-  // console.log(products.find(product => product.id === idButton));
+//         <a href="#" class="eliminar-carrito" data-id="${product.id}"> X </a>
+//       </div>
+//     `
+//     productsCartContainer.appendChild(divProduct);
+//   });
+// }
 
-  cart.forEach(product => {
-    const divProduct = document.createElement('div');
-    divProduct.classList.add('producto');
-    divProduct.innerHTML = `
-      <div class="producto__info">
-        <p class="producto__nombre"> ${product.title} </p>
-        <p class="producto__precio">
-            Precio:
-            <span> ${product.price} </span>
-        </p>
+// /* 
+// <p class="producto__cantidad">
+//     Cantidad:
+//     <input type="number" name="amount" id="amount" min="1" value="1">
+// </p> 
+// */
 
-        <a href="#" class="eliminar-carrito" data-id="${product.id}"> X </a>
-      </div>
-    `
-    productsCartContainer.appendChild(divProduct);
-  });
-}
-
-/* 
-<p class="producto__cantidad">
-    Cantidad:
-    <input type="number" name="amount" id="amount" min="1" value="1">
-</p> 
-*/
-
-function cleanHTMLCart() {
-  while (productsCartContainer.firstChild) {
-    productsCartContainer.removeChild(productsCartContainer.firstChild);
-  }
-}
+// function cleanHTMLCart() {
+//   while (productsCartContainer.firstChild) {
+//     productsCartContainer.removeChild(productsCartContainer.firstChild);
+//   }
+// }
 
 function guardarLocalStorage() {
   localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
