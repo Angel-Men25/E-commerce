@@ -23,6 +23,13 @@ body {
   position: absolute;
   top: 8rem;
   right: 35px;
+  border-left: 6px solid #4070f4;
+  overflow: hidden;
+  transform: translateX(120%);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.toast.active {
+  transform: translateX(0);
 }
 
 .toast__content {
@@ -32,7 +39,59 @@ body {
   gap: 1rem;
 }
 
+.toast__content .toast__icon--check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #4070f4;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
 
+.text {
+  font-weight: bold;
+}
+
+.toast__icon--close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.toast__icon--close:hover {
+  opacity: 1;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background-color:#ddd;
+}
+.progress::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4070f4;
+}
+.progress.active::before{
+  animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
 
 /* OTRO STYLE.CSS DE PROYECTO CARRITO CON LS */
 
