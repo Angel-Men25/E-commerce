@@ -1,5 +1,9 @@
-
+// PLATZI API
 // https://api.escuelajs.co/api/v1/products
+// FAKE STORE API
+// https://fakestoreapi.com/products
+// dummyjson
+// https://dummyjson.com/products
 
 const cardsContainer = document.querySelector('.cards');
 // const productsCartContainer = document.querySelector('.productos');
@@ -8,11 +12,14 @@ document.addEventListener('DOMContentLoaded', fetchData)
 
 async function fetchData() {
   try {
-    const url = 'https://api.escuelajs.co/api/v1/products';
+    const url = 'https://dummyjson.com/products?limit=100';
     const response = await fetch(url);
     const data = await response.json();
+    // PLATZI and FAKE STORE API
     // console.log(data);
-    // showProductsCards(data);
+    // dummyjson
+    console.log(data.products);
+    showProductsCards(data.products);
   } catch (error) {
     console.log(error);
   }
@@ -20,6 +27,13 @@ async function fetchData() {
 
 function showProductsCards(products) {
   products.forEach(product => {
+    // PLATZI
+    // const { title, id } = product;
+    // FAKE STORE API
+    // const { title, id, image, price } = product;
+    // dummyjson
+    const { title, id, thumbnail, price } = product;
+    
     const card = document.createElement('div');
     card.classList.add('card');
     // card.innerHTML = `
@@ -29,11 +43,16 @@ function showProductsCards(products) {
 
     const cardTitle = document.createElement('h3');
     cardTitle.classList.add('card__title');
-    cardTitle.innerText = product.title;
+    cardTitle.innerText = title;
+
+    const cardImg = document.createElement('img');
+    cardImg.classList.add('card__img');
+    cardImg.src = thumbnail;
+    cardImg.alt = title;
 
     const cardBtn = document.createElement('button');
     cardBtn.classList.add('card__btn');
-    cardBtn.dataset.id = product.id;
+    cardBtn.dataset.id = id;
     cardBtn.innerText = 'Buy';
     cardBtn.onclick = (e) => {
       const idButton = parseInt(e.target.dataset.id);
@@ -42,6 +61,7 @@ function showProductsCards(products) {
     }
 
     card.appendChild(cardTitle);
+    card.appendChild(cardImg);
     card.appendChild(cardBtn);
 
     cardsContainer.appendChild(card);

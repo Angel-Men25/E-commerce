@@ -17,20 +17,21 @@ function showCartProductsHTML() {
   cleanHTMLCart();
 
   cart.forEach(product => {
+    // const { title, id, image, price } = product;
     const divProduct = document.createElement('div');
     divProduct.classList.add('producto');
     divProduct.innerHTML = `
       <div class="producto__info">
-        <p class="producto__nombre"> ${product.title} </p>
+        <p class="producto__nombre"> ${product[0].title} </p>
         <p class="producto__precio">
             Precio:
-            <span> ${product.price} </span>
+            <span> ${product[0].price} </span>
         </p>
         <p class="producto__cantidad">
           Cantidad:
           <span> ${product[1]} </span>
         </p> 
-        <a href="#" class="eliminar-carrito" data-id="${product.id}"> X </a>
+        <a href="#" class="eliminar-carrito" data-id="${product[0].id}"> X </a>
       </div>
     `
     productsCartContainer.appendChild(divProduct);
