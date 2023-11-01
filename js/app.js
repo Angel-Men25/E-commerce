@@ -10,8 +10,9 @@ const cardsContainer = document.querySelector('.cards');
 const buttonContainer = document.querySelector('.buttons');
 
 document.addEventListener('DOMContentLoaded', fetchCategories);
+document.addEventListener('DOMContentLoaded', fetchAllProducts);
 
-// ====================
+// ========================================
 
 let categories = [];
 
@@ -52,45 +53,61 @@ function renderCategorieBtn(data) {
       let text = e.target.innerText;
       text = text[0].toLowerCase() + text.slice(1);
       text = text.replace(' ', '-');
-      console.log(text);
-      // filterByCategorie(text);
+      filterByCategorie(text);
     }
 
     buttonContainer.appendChild(categorieBtn);
   });
 
-
-  // const categoriesBtnList = document.querySelectorAll('.buttons__categories');
-  // categoriesBtnList.forEach(btn => {
-  //   console.log(btn);
-  // });
-
+  // fetchAllProducts();
 }
 
-// ====================
-
-async function fetchData() {
+async function fetchAllProducts() {
   try {
     const url = 'https://dummyjson.com/products?limit=100';
     const response = await fetch(url);
     const data = await response.json();
-    // PLATZI and FAKE STORE API
-    // console.log(data);
-    // dummyjson
-    console.log(data.products);
+    // console.log(data.products);
     showProductsCards(data.products);
   } catch (error) {
     console.log(error);
   }
 }
 
+async function filterByCategorie(text) {
+  try {
+    const url = `https://dummyjson.com/products/category/${text}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    // console.log(data.products);
+    showProductsCards(data.products);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// ========================================
+
+// async function fetchData() {
+//   try {
+//     const url = 'https://dummyjson.com/products?limit=100';
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     // PLATZI and FAKE STORE API
+//     // console.log(data);
+//     // dummyjson
+//     console.log(data.products);
+//     showProductsCards(data.products);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
 function showProductsCards(products) {
+
+  cleanHTML();
+
   products.forEach(product => {
-    // PLATZI
-    // const { title, id } = product;
-    // FAKE STORE API
-    // const { title, id, image, price } = product;
-    // dummyjson
     const { title, id, thumbnail, price } = product;
     
     const card = document.createElement('div');
@@ -117,6 +134,7 @@ function showProductsCards(products) {
       const idButton = parseInt(e.target.dataset.id);
       // console.log(idButton);
       addToCart(idButton, products);
+      // showToastNotification();
     }
 
     card.appendChild(cardTitle);
@@ -127,14 +145,38 @@ function showProductsCards(products) {
   });
 }
 
+// function showToastNotification() {
+//   const toast = document.querySelector('.toast');
+//   const closeIcon = document.querySelector('.toast__icon--close');
+//   const progress = document.querySelector('.progress');
+
+//   toast.classList.add('active');
+//   progress.classList.add('active');
+//   setTimeout(() => {
+//     toast.classList.remove('active');
+//   }, 5000);
+//   setTimeout(() => {
+//     progress.classList.remove('active');
+//   }, 5300);
+
+//   closeIcon.addEventListener('click', () => {
+//     toast.classList.remove('active');
+
+//     setTimeout(() => {
+//       toast.classList.remove('active');
+//     }, 300);
+//   })
+// }
+
 
 // CART
+
 let cart = [];
 let cartLS = JSON.parse(localStorage.getItem('productos-en-carrito'));
 if (cartLS) {
-    cart = cartLS;
+  cart = cartLS;
 } else {
-    cart = [];
+  cart = [];
 }
 
 function addToCart(idButton, products) {
@@ -199,4 +241,10 @@ function addToCart(idButton, products) {
 
 function guardarLocalStorage() {
   localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+}
+
+function cleanHTML() {
+  while (cardsContainer.firstChild) {
+    cardsContainer.removeChild(cardsContainer.firstChild);
+  }
 }
