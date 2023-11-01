@@ -7,8 +7,67 @@
 
 const cardsContainer = document.querySelector('.cards');
 // const productsCartContainer = document.querySelector('.productos');
+const buttonContainer = document.querySelector('.buttons');
 
-document.addEventListener('DOMContentLoaded', fetchData)
+document.addEventListener('DOMContentLoaded', fetchCategories);
+
+// ====================
+
+let categories = [];
+
+// fetch categories in API
+async function fetchCategories() {
+  try {
+    const url = 'https://dummyjson.com/products/categories';
+    const response = await fetch(url);
+    const data = await response.json();
+    // console.log(data);
+    renderCategorieBtn(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// show buttons of categories on HTML
+function renderCategorieBtn(data) {
+  // Iterar en "data" = categoria
+  for (let i = 0; i < data.length; i++) {
+    // si contiene un guion medio
+    if (data[i].includes('-')) {
+      // separar por el guien medio y juntar con un espacio
+      let str = data[i].split('-').join(' ');
+      categories.push(str);
+      continue;
+    }
+    // imprimir la categoria siguiente
+    categories.push(data[i]);
+  }
+
+  // add text to buttons
+  categories.forEach(categorie => {
+    const categorieBtn = document.createElement('button');
+    categorieBtn.classList.add('buttons__categories');
+    categorieBtn.innerText = categorie[0].toUpperCase() + categorie.slice(1);
+    categorieBtn.onclick = (e) => {
+      let text = e.target.innerText;
+      text = text[0].toLowerCase() + text.slice(1);
+      text = text.replace(' ', '-');
+      console.log(text);
+      // filterByCategorie(text);
+    }
+
+    buttonContainer.appendChild(categorieBtn);
+  });
+
+
+  // const categoriesBtnList = document.querySelectorAll('.buttons__categories');
+  // categoriesBtnList.forEach(btn => {
+  //   console.log(btn);
+  // });
+
+}
+
+// ====================
 
 async function fetchData() {
   try {
