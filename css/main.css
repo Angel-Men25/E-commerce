@@ -5,7 +5,7 @@
   --tangerine: #ffba00;
   --white: #ffffff;
 
-  --windsor: #3c2973;
+  --windsor: #342a55;
   --lavender: #b6bbf9;
   --peach: #fbc99a;
   --wisteria: #d586d7;
@@ -15,6 +15,18 @@
 body {
   background-color: var(--white);
   height: 100vh;
+}
+
+/* CART BUTTON */
+
+.cart__button {
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1.5rem;
 }
 
 /* CONTAINER */
