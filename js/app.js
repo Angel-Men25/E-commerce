@@ -46,6 +46,7 @@ function renderCategorieBtn(data) {
 
   // add text to buttons
   categories.forEach(categorie => {
+    console.log(categorie[0].toUpperCase() + categorie.slice(1));
     const categorieBtn = document.createElement('button');
     categorieBtn.classList.add('buttons__categories');
     categorieBtn.innerText = categorie[0].toUpperCase() + categorie.slice(1);
