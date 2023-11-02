@@ -1,20 +1,16 @@
-// PLATZI API
-// https://api.escuelajs.co/api/v1/products
-// FAKE STORE API
-// https://fakestoreapi.com/products
 // dummyjson
 // https://dummyjson.com/products
 
 const cardsContainer = document.querySelector('.cards');
-// const productsCartContainer = document.querySelector('.productos');
 const buttonContainer = document.querySelector('.buttons');
 const mainTitle = document.querySelector('.main__title');
+const notificationNumber = document.querySelector('.notification span');
+
 
 document.addEventListener('DOMContentLoaded', fetchCategories);
 document.addEventListener('DOMContentLoaded', fetchAllProducts);
 
-// ========================================
-
+// array for the categorie's name
 let categories = [];
 
 // fetch categories in API
@@ -32,16 +28,16 @@ async function fetchCategories() {
 
 // show buttons of categories on HTML
 function renderCategorieBtn(data) {
-  // Iterar en "data" = categoria
+  // iterate in "data"
   for (let i = 0; i < data.length; i++) {
-    // si contiene un guion medio
+    // if includes a "middle dash"
     if (data[i].includes('-')) {
-      // separar por el guien medio y juntar con un espacio
+      // split by the "middle dash" and join with a blank space
       let str = data[i].split('-').join(' ');
       categories.push(str);
       continue;
     }
-    // imprimir la categoria siguiente
+    // add in "categories" the next categorie text
     categories.push(data[i]);
   }
 
@@ -59,17 +55,18 @@ function renderCategorieBtn(data) {
       console.log(categorieName);
       filterByCategorie(text, categorieName);
       // add "buttons__categories--active"
-      addBtnActiveClass(e);
+      addBtnActiveClass(e, categorieName);
     }
 
     buttonContainer.appendChild(categorieBtn);
   });
 }
 
-function addBtnActiveClass(e) {
+function addBtnActiveClass(e, categorieName) {
   const btnsCategoriesDOM = document.querySelectorAll('.buttons__categories');
   btnsCategoriesDOM.forEach(button => button.classList.remove('buttons__categories--active'));
   e.currentTarget.classList.add('buttons__categories--active');
+  mainTitle.innerHTML = categorieName;
 }
 
 async function fetchAllProducts() {
@@ -84,43 +81,21 @@ async function fetchAllProducts() {
   }
 }
 
-async function filterByCategorie(text, categorieName) {
+async function filterByCategorie(text) {
   try {
     const url = `https://dummyjson.com/products/category/${text}`;
     const response = await fetch(url);
     const data = await response.json();
     // console.log(data.products);
-    showProductsCards(data.products, categorieName);
+    showProductsCards(data.products);
   } catch (error) {
     console.log(error);
   }
 }
 
-// ========================================
-
-// async function fetchData() {
-//   try {
-//     const url = 'https://dummyjson.com/products?limit=100';
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     // PLATZI and FAKE STORE API
-//     // console.log(data);
-//     // dummyjson
-//     console.log(data.products);
-//     showProductsCards(data.products);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-function showProductsCards(products, categorieName) {
+function showProductsCards(products) {
 
   cleanHTML();
-
-  document.addEventListener('DOMContentLoaded', () => {
-    mainTitle.innerHTML = 'All products';
-  })
-  mainTitle.innerHTML = categorieName;
 
   products.forEach(product => {
     const { title, id, thumbnail, price, discountPercentage } = product;
@@ -130,40 +105,73 @@ function showProductsCards(products, categorieName) {
     
     const card = document.createElement('div');
     card.classList.add('card');
-    card.innerHTML = `
-    <img class="card__img" src="${thumbnail}" alt="${title}">
-    <div class="card__texts">
-      <p class="card__title">${title}</p>
-      <p class="card__prev-price">$<span>${price}</span></p>
-      <div class="card__prices">
-        <p class="price__act">$<span>${total}</span></p>
-        <p class="price__discount"><span>${discountPercentage}</span>% off</p>
-      </div>
-      <button class="card__btn" id="${id}">Add to cart</button>
-    </div>
-    `
+    // card.innerHTML = `
+    // <img class="card__img" src="${thumbnail}" alt="${title}">
+    // <div class="card__texts">
+    //   <p class="card__title">${title}</p>
+    //   <p class="card__prev-price">$<span>${price}</span></p>
+    //   <div class="card__prices">
+    //     <p class="price__act">$<span>${total}</span></p>
+    //     <p class="price__discount"><span>${discountPercentage}</span>% off</p>
+    //   </div>
+    //   <button class="card__btn" id="${id}">Add to cart</button>
+    // </div>
+    // `
 
-    // const cardTitle = document.createElement('h3');
-    // cardTitle.classList.add('card__title');
-    // cardTitle.innerText = title;
+    // card__img
+    const cardImg = document.createElement('img');
+    cardImg.classList.add('card__img');
+    cardImg.src = thumbnail;
+    cardImg.alt = title;
 
-    // const cardImg = document.createElement('img');
-    // cardImg.classList.add('card__img');
-    // cardImg.src = thumbnail;
-    // cardImg.alt = title;
+    // card__texts DIV
+    const cardTextsDiv = document.createElement('div');
+    cardTextsDiv.classList.add('card__texts');
 
-    // const cardBtn = document.createElement('button');
-    // cardBtn.classList.add('card__btn');
-    // cardBtn.dataset.id = id;
-    // cardBtn.innerText = 'Buy';
-    // cardBtn.onclick = (e) => {
-    //   const idButton = parseInt(e.target.dataset.id);
-    //   addToCart(idButton, products);
-    // }
+    // card__title
+    const cardTitle = document.createElement('p');
+    cardTitle.classList.add('card__title');
+    cardTitle.innerText = title;
 
-    // card.appendChild(cardTitle);
-    // card.appendChild(cardImg);
-    // card.appendChild(cardBtn);
+    // card__prev-price
+    const prevPrice = document.createElement('p');
+    prevPrice.classList.add('card__prev-price');
+    prevPrice.innerHTML = `$ <span>${price}</span>`;
+
+    // card__prices
+    const cardPricesDiv = document.createElement('div');
+    cardPricesDiv.classList.add('card__prices');
+
+    // price__act
+    const priceActual = document.createElement('p');
+    priceActual.classList.add('price__act');
+    priceActual.innerHTML = `$ <span>${total}</span>`;
+
+    // price__discount
+    const priceDiscount = document.createElement('p');
+    priceDiscount.classList.add('price__discount');
+    priceDiscount.innerHTML = `$ <span>${discountPercentage}</span>`;
+
+    // card__btn
+    const cardBtn = document.createElement('button');
+    cardBtn.classList.add('card__btn');
+    cardBtn.dataset.id = id;
+    cardBtn.innerText = 'Add to cart';
+    cardBtn.onclick = (e) => {
+      const idButton = parseInt(e.target.dataset.id);
+      addToCart(idButton, products);
+    }
+
+    cardTextsDiv.appendChild(cardTitle);
+    cardTextsDiv.appendChild(prevPrice);
+    cardTextsDiv.appendChild(cardPricesDiv);
+    cardTextsDiv.appendChild(cardBtn);
+    
+    cardPricesDiv.appendChild(priceActual);
+    cardPricesDiv.appendChild(priceDiscount);
+
+    card.appendChild(cardImg);
+    card.appendChild(cardTextsDiv);
 
     cardsContainer.appendChild(card);
   });
@@ -199,6 +207,7 @@ let cart = [];
 let cartLS = JSON.parse(localStorage.getItem('productos-en-carrito'));
 if (cartLS) {
   cart = cartLS;
+  updateNotificationNumber();
 } else {
   cart = [];
 }
@@ -207,64 +216,28 @@ function addToCart(idButton, products) {
   const addedProduct = products.find(product => product.id === idButton);
 
   if (cart.some(product => product[0].id === idButton)) {
-    // Si ya existe en el cart mandar un "toast" que notifique que ya esta en el carrito
+    // if already exists on the "cart array", only increase the product amount
     console.log('The product is already in the cart');
-    // toastNotification('The product is already in the cart');
-    // console.log(cart);
-    // productoAAumentar.cantidad ++;
-    const productoAAumentar = cart.find(product => product[0].id === idButton);
-    productoAAumentar[1] ++;
+    const productToAmount = cart.find(product => product[0].id === idButton);
+    productToAmount[1] ++;
   } else {
-    // Si no existe en el cart, agregarlo
-    // cart = [...cart, addedProduct];
+    // if it doesnt exist, then add
     cart = [...cart, [addedProduct, 1]];
     console.log('Product added correctly');
-    console.log(cart);
-    // console.log(cart[0]);
   }
 
+  updateNotificationNumber();
+
   guardarLocalStorage();
-  
-  // showCartProductsHTML(idButton, products);
 }
-
-// function showCartProductsHTML(idButton, products) {
-
-//   cleanHTMLCart();
-
-//   cart.forEach(product => {
-//     const divProduct = document.createElement('div');
-//     divProduct.classList.add('producto');
-//     divProduct.innerHTML = `
-//       <div class="producto__info">
-//         <p class="producto__nombre"> ${product.title} </p>
-//         <p class="producto__precio">
-//             Precio:
-//             <span> ${product.price} </span>
-//         </p>
-
-//         <a href="#" class="eliminar-carrito" data-id="${product.id}"> X </a>
-//       </div>
-//     `
-//     productsCartContainer.appendChild(divProduct);
-//   });
-// }
-
-// /* 
-// <p class="producto__cantidad">
-//     Cantidad:
-//     <input type="number" name="amount" id="amount" min="1" value="1">
-// </p> 
-// */
-
-// function cleanHTMLCart() {
-//   while (productsCartContainer.firstChild) {
-//     productsCartContainer.removeChild(productsCartContainer.firstChild);
-//   }
-// }
 
 function guardarLocalStorage() {
   localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+}
+
+function updateNotificationNumber() {
+  let nuevoNumerito = cart.reduce((acc, product) => acc + product[1], 0);
+  notificationNumber.innerHTML = `${nuevoNumerito}`;
 }
 
 function cleanHTML() {

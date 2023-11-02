@@ -5,7 +5,6 @@ const productsCartContainer = document.querySelector('.productos');
 function cargarCarrito() {
   if (cart) {
     console.log(cart);
-    // showCartProductsHTML(idButton, products);
     showCartProductsHTML();
   } else {
     console.log('no hay productos');
