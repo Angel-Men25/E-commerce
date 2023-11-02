@@ -46,21 +46,27 @@ function renderCategorieBtn(data) {
 
   // add text to buttons
   categories.forEach(categorie => {
-    console.log(categorie[0].toUpperCase() + categorie.slice(1));
     const categorieBtn = document.createElement('button');
     categorieBtn.classList.add('buttons__categories');
     categorieBtn.innerText = categorie[0].toUpperCase() + categorie.slice(1);
     categorieBtn.onclick = (e) => {
+      // add again the "middle dash" and to lower case
       let text = e.target.innerText;
       text = text[0].toLowerCase() + text.slice(1);
       text = text.replace(' ', '-');
       filterByCategorie(text);
+      // add "buttons__categories--active"
+      addBtnActiveClass(e);
     }
 
     buttonContainer.appendChild(categorieBtn);
   });
+}
 
-  // fetchAllProducts();
+function addBtnActiveClass(e) {
+  const btnsCategoriesDOM = document.querySelectorAll('.buttons__categories');
+  btnsCategoriesDOM.forEach(button => button.classList.remove('buttons__categories--active'));
+  e.currentTarget.classList.add('buttons__categories--active');
 }
 
 async function fetchAllProducts() {
