@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+
 :root {
-  --tonys-pink: #e5958e;
+  /* --tonys-pink: #e5958e;
   --rose-bud: #fdb095;
   --sapphire: #210440;
   --tangerine: #ffba00;
-  --white: #ffffff;
+  --white: #ffffff; */
 
   --windsor: #342a55;
   --lavender: #b6bbf9;
   --peach: #fbc99a;
   --wisteria: #d586d7;
   --pig: #fcdde8;
+  --red: #cc0c39;
+  --white: #ffffff;
 }
 
 body {
@@ -23,13 +27,22 @@ body {
   font-size: 2rem;
   text-decoration: none;
   color: black;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
-  margin: 3rem;
+  margin: 3rem 3rem 0 0;
   color: var(--windsor);
   font-size: 2.5rem;
-  /* width: 100%; */
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  /* width: 100%;
+  outline: 2px solid red; */
+}
+.bag__button:hover {
+  background-color: var(--pig);
 }
 
 /* CONTAINER */
@@ -50,6 +63,8 @@ body {
   height: 100vh;
   position: sticky;
   top: 0;
+  left: 0;
+  bottom: 0;
   margin-top: auto;
 
   display: flex;
@@ -106,5 +121,86 @@ body {
 
 .main {
   width: 100%;
+  margin: 3.5rem 0;
+}
 
+.main__title {
+  font-size: 2rem;
+  margin-left: 5rem;
+  margin-bottom: 2rem;
+  color: var(--windsor);
+}
+
+/* CARDS */
+
+.cards {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(180px, 250px)); */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  /* justify-content: center; */
+  margin: 0 8rem 0 5rem;
+}
+
+/* CARD */
+
+.card {
+  width: 100%;
+  /* border: 1px solid black; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 7px;
+  display: grid;
+  grid-template-rows: 200px 1fr;
+  gap: 8px;
+  /* padding: 1rem; */
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card__texts {
+  display: grid;
+  padding: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.193);
+}
+
+.card__prev-price {
+  margin-top: 0.5rem;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.card__prices {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.8rem 0 1.2rem;
+}
+
+.price__act {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.price__discount {
+  color: var(--white);
+  font-size: 0.8rem;
+  background-color: var(--red);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.card__btn {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background-color: var(--windsor);
+  color: var(--white);
+  padding: 0.3rem 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 5px;
 }

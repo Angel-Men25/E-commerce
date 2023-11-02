@@ -8,6 +8,7 @@
 const cardsContainer = document.querySelector('.cards');
 // const productsCartContainer = document.querySelector('.productos');
 const buttonContainer = document.querySelector('.buttons');
+const mainTitle = document.querySelector('.main__title');
 
 document.addEventListener('DOMContentLoaded', fetchCategories);
 document.addEventListener('DOMContentLoaded', fetchAllProducts);
@@ -51,10 +52,12 @@ function renderCategorieBtn(data) {
     categorieBtn.innerText = categorie[0].toUpperCase() + categorie.slice(1);
     categorieBtn.onclick = (e) => {
       // add again the "middle dash" and to lower case
+      let categorieName = e.target.innerText;
       let text = e.target.innerText;
       text = text[0].toLowerCase() + text.slice(1);
       text = text.replace(' ', '-');
-      filterByCategorie(text);
+      console.log(categorieName);
+      filterByCategorie(text, categorieName);
       // add "buttons__categories--active"
       addBtnActiveClass(e);
     }
@@ -81,13 +84,13 @@ async function fetchAllProducts() {
   }
 }
 
-async function filterByCategorie(text) {
+async function filterByCategorie(text, categorieName) {
   try {
     const url = `https://dummyjson.com/products/category/${text}`;
     const response = await fetch(url);
     const data = await response.json();
     // console.log(data.products);
-    showProductsCards(data.products);
+    showProductsCards(data.products, categorieName);
   } catch (error) {
     console.log(error);
   }
@@ -110,43 +113,57 @@ async function filterByCategorie(text) {
 //   }
 // }
 
-function showProductsCards(products) {
+function showProductsCards(products, categorieName) {
 
   cleanHTML();
 
+  document.addEventListener('DOMContentLoaded', () => {
+    mainTitle.innerHTML = 'All products';
+  })
+  mainTitle.innerHTML = categorieName;
+
   products.forEach(product => {
-    const { title, id, thumbnail, price } = product;
+    const { title, id, thumbnail, price, discountPercentage } = product;
+
+    let total = ((100 - discountPercentage) / 100) * price;
+    total = total.toFixed(2);
     
     const card = document.createElement('div');
     card.classList.add('card');
-    // card.innerHTML = `
-    //   <p class="card__title">${product.title}</p>
-    //   <button class="card__btn" data-id="${product.id}">Buy</button>
-    // `;
+    card.innerHTML = `
+    <img class="card__img" src="${thumbnail}" alt="${title}">
+    <div class="card__texts">
+      <p class="card__title">${title}</p>
+      <p class="card__prev-price">$<span>${price}</span></p>
+      <div class="card__prices">
+        <p class="price__act">$<span>${total}</span></p>
+        <p class="price__discount"><span>${discountPercentage}</span>% off</p>
+      </div>
+      <button class="card__btn" id="${id}">Add to cart</button>
+    </div>
+    `
 
-    const cardTitle = document.createElement('h3');
-    cardTitle.classList.add('card__title');
-    cardTitle.innerText = title;
+    // const cardTitle = document.createElement('h3');
+    // cardTitle.classList.add('card__title');
+    // cardTitle.innerText = title;
 
-    const cardImg = document.createElement('img');
-    cardImg.classList.add('card__img');
-    cardImg.src = thumbnail;
-    cardImg.alt = title;
+    // const cardImg = document.createElement('img');
+    // cardImg.classList.add('card__img');
+    // cardImg.src = thumbnail;
+    // cardImg.alt = title;
 
-    const cardBtn = document.createElement('button');
-    cardBtn.classList.add('card__btn');
-    cardBtn.dataset.id = id;
-    cardBtn.innerText = 'Buy';
-    cardBtn.onclick = (e) => {
-      const idButton = parseInt(e.target.dataset.id);
-      // console.log(idButton);
-      addToCart(idButton, products);
-      // showToastNotification();
-    }
+    // const cardBtn = document.createElement('button');
+    // cardBtn.classList.add('card__btn');
+    // cardBtn.dataset.id = id;
+    // cardBtn.innerText = 'Buy';
+    // cardBtn.onclick = (e) => {
+    //   const idButton = parseInt(e.target.dataset.id);
+    //   addToCart(idButton, products);
+    // }
 
-    card.appendChild(cardTitle);
-    card.appendChild(cardImg);
-    card.appendChild(cardBtn);
+    // card.appendChild(cardTitle);
+    // card.appendChild(cardImg);
+    // card.appendChild(cardBtn);
 
     cardsContainer.appendChild(card);
   });

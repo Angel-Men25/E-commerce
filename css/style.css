@@ -21,7 +21,7 @@ body {
   background-color: #46A094;
 } */
 
-.cards {
+/* .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
   gap: 1rem;
@@ -31,7 +31,7 @@ body {
 
 /* CARD */
 
-.card {
+/* .card {
   border: 2px solid black;
   display: grid;
   gap: 8px;
@@ -42,7 +42,7 @@ body {
   max-width: 100%;
   width: 150px;
   text-align: center;
-}
+} */
 
 /* TOAST NOTIFICATION */
 
