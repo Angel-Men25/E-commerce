@@ -145,7 +145,8 @@ body {
 
 .main {
   width: 100%;
-  margin: 3.5rem 0;
+  padding: 3.5rem 0;
+  background-color: #fbfbfb;
 }
 
 .main__title {
@@ -174,6 +175,7 @@ body {
   display: grid;
   grid-template-rows: 200px 1fr;
   gap: 8px;
+  background-color: var(--white);
 }
 
 .card__img {
@@ -284,6 +286,7 @@ body {
   display: grid;
   grid-template-columns: 260px 1fr;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color: var(--white);
 }
 
 .cart__picture {
@@ -306,6 +309,7 @@ body {
 .cart__title {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
+  font-weight: 500;
 }
 
 .cart__description {
@@ -325,20 +329,35 @@ body {
 .delete__btn {
   cursor: pointer;
   border: none;
-  background-color: var(--red);
-  color: var(--white);
   border-radius: 5px;
-  padding: 0.4rem 0.8rem;
   margin-top: 1rem;
-  font-size: 0.8rem;
-
   padding: 0;
   color: var(--red);
   background: none;
   font-size: 0.9rem;
 }
 .delete__btn:hover {
-  /* opacity: 0.8; */
-
   text-decoration: underline;
+}
+
+/* MODAL */
+
+.modal-validation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.322);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal__card {
+  background-color: var(--white);
+  max-width: max-content;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 6rem;
 }

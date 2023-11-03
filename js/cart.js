@@ -38,44 +38,77 @@ function showCartProductsHTML() {
 
     calculatedDiscount = ((product[0].price * product[0].discountPercentage)/100);
 
-    // const { title, id, image, price } = product;
     const divProduct = document.createElement('div');
     divProduct.classList.add('cart__card');
-    // divProduct.innerHTML = `
-    //   <div class="producto__info">
-    //     <p class="producto__nombre"> ${product[0].title} </p>
-    //     <p class="producto__precio">
-    //         Price:
-    //         <span> $${product[0].price} </span>
-    //     </p>
-    //     <p class="producto__cantidad">
-    //       Amount:
-    //       <span> ${product[1]} </span>
-    //     </p> 
-    //     <a href="#" class="eliminar-carrito" data-id="${product[0].id}"> X </a>
-    //   </div>
-    // `
-    divProduct.innerHTML = `
-    <div class="cart__picture">
-      <img class="cart__img" src="${product[0].thumbnail}" alt="${product[0].title}">
-    </div>
-    <div class="cart__texts">
-      <p class="cart__title">${product[0].title}</p>
-      <p class="cart__description">${product[0].description}</p>
-      <p class="cart__unitariPrice">$${total}</p>
-      <p class="cart__amount">Amount: <span>${product[1]}</span></p>
-      <p class="cart__totalPrice">Total: $${subtotalProduct}</p>
-      <button class="delete__btn" id="${product[0].id}">
-        <span>Delete</span>
-      </button>
-    </div>
-    `
-    productsCartContainer.appendChild(divProduct);  
 
+    // cart__picture DIV
+    const cartPictureDiv = document.createElement('div');
+    cartPictureDiv.classList.add('cart__picture');
+    
+    // cart__img
+    const cartImg = document.createElement('img');
+    cartImg.classList.add('cart__img');
+    cartImg.src = product[0].thumbnail;
+    cartImg.alt = product[0].title;
+
+    cartPictureDiv.appendChild(cartImg);
+
+    // cart__texts DIV
+    const cartTextsDiv = document.createElement('div');
+    cartTextsDiv.classList.add('cart__texts');
+
+    // cart__title
+    const cartTitle = document.createElement('h2');
+    cartTitle.classList.add('cart__title');
+    cartTitle.innerText = product[0].title;
+
+    // cart__description
+    const cartDescription = document.createElement('p');
+    cartDescription.classList.add('cart__description');
+    cartDescription.innerText = product[0].description;
+
+    // cart__unitariPrice
+    const cartUnitariPrice = document.createElement('p');
+    cartUnitariPrice.classList.add('cart__unitariPrice');
+    cartUnitariPrice.innerText = `$${total}`;
+
+    // cart__amount
+    const cartAmount = document.createElement('p');
+    cartAmount.classList.add('cart__amount');
+    cartAmount.innerHTML = `Amount: <span>${product[1]}</span>`;
+
+    // cart__totalPrice
+    const cartTotalPrice = document.createElement('p');
+    cartTotalPrice.classList.add('cart__totalPrice');
+    cartTotalPrice.innerHTML = `Total: $${subtotalProduct}`;
+
+    // delete__btn
+    const cartDeleteBtn = document.createElement('button');
+    cartDeleteBtn.classList.add('delete__btn');
+    cartDeleteBtn.innerText = 'Delete';
+    cartDeleteBtn.dataset.id = product[0].id;
+    cartDeleteBtn.onclick = (e) => {
+      let idProduct = parseInt(e.target.dataset.id);
+      deleteProduct(idProduct);
+    }
+
+
+    cartTextsDiv.appendChild(cartTitle);
+    cartTextsDiv.appendChild(cartDescription);
+    cartTextsDiv.appendChild(cartUnitariPrice);
+    cartTextsDiv.appendChild(cartAmount);
+    cartTextsDiv.appendChild(cartTotalPrice);
+    cartTextsDiv.appendChild(cartDeleteBtn);
+
+    divProduct.appendChild(cartPictureDiv);
+    divProduct.appendChild(cartTextsDiv);
+
+    productsCartContainer.appendChild(divProduct);  
+    
     // iterating to add each time the subtotal
-    totalWithoutDiscount += product[0].price;
-    discount += calculatedDiscount;
-    subtotal += total;
+    totalWithoutDiscount += product[0].price * product[1];
+    discount += calculatedDiscount * product[1];
+    subtotal += total * product[1];
   });
 
   totalWithoutDiscount = parseFloat(totalWithoutDiscount.toFixed(2));
@@ -97,6 +130,13 @@ function updatePurchaseInfo(totalWithoutDiscount, discount, subtotal) {
   
   // subtotal
   subtotalSpan.innerText = `$${subtotal}`;
+}
+
+function deleteProduct(id) {
+  console.log(id);
+  cart = cart.filter(product => product[0].id !== id);
+  saveLocalStorage();
+  loadCart();
 }
 
 function emptyCart() {
