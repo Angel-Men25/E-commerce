@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjeta</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/credit-card.css">
+</head>
+<body>
+
+  <div class="contenedor">
+
+    <!-- Tarjeta -->
+    <section class="tarjeta" id="tarjeta">
+      <div class="delantera">
+        <div class="logo-marca">
+          <img src="img/logos/visa.png" alt="Visa logo">
+        </div>
+        <img src="img/chip-tarjeta.png" alt="Chip tarjeta" class="chip">
+        <div class="datos">
+          <div class="grupo" id="numero">
+            <p class="label">Numero Tarjeta</p>
+            <p class="numero">#### #### #### ####</p>
+          </div>
+          <div class="flexbox">
+            <div class="grupo" id="nombre">
+              <p class="label">Nombre Tarjeta</p>
+              <p class="nombre">Jhon Doe</p>
+            </div>
+
+            <div class="grupo" id="expiracion">
+              <p class="label">Expiracion</p>
+              <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trasera">
+        <div class="barra-magnetica"></div>
+        <div class="datos">
+          <div class="grupo" id="firma">
+            <p class="label">Firma</p>
+            <div class="firma"><p></p></div>
+          </div>
+          <div class="grupo" id="ccv">
+            <p class="label">CCV</p>
+            <p class="ccv"></p>
+          </div>
+        </div>
+        <p class="leyenda">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ad cupiditate asperiores!
+        </p>
+        <a href="#" class="link-banco">www.tubanco.com</a>
+      </div>
+    </section>
+
+    <!-- Contenedor boton abrir formulario -->
+    <div class="contenedor-btn">
+      <button class="btn-abrir-formulario" id="btn-abrir-formulario">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+
+    <!-- Formulario -->
+
+
+  </div>
+  
+  <script src="https://kit.fontawesome.com/1d47c3ee1f.js" crossorigin="anonymous"></script>
+  <script src="./js/credit-card.js"></script>
+</body>
+</html>
