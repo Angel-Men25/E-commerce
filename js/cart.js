@@ -13,11 +13,11 @@ const payBtn = document.getElementById('payBtn');
 emptyBtn.addEventListener('click', emptyCart);
 
 function loadCart() {
-  if (cart) {
-    // console.log(cart);
+  if (cart.length >= 1) {
     showCartProductsHTML();
   } else {
     console.log('no hay productos');
+    showCartProductsHTML();
   }
 }
 
@@ -154,5 +154,13 @@ function cleanHTMLCart() {
     productsCartContainer.removeChild(productsCartContainer.firstChild);
   }
 }
+
+payBtn.addEventListener('click', () => {
+  if(cart.length >= 1) {
+    window.location.href = '../credit-card.html';
+  } else {
+    console.log('no puede continuar la compra');
+  }
+})
 
 loadCart();

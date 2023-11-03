@@ -15,23 +15,24 @@
     <!-- Tarjeta -->
     <section class="tarjeta" id="tarjeta">
       <div class="delantera">
-        <div class="logo-marca">
-          <img src="img/logos/visa.png" alt="Visa logo">
+        <div class="logo-marca" id="logo-marca">
+          <!-- logo marca de tarjeta con JS -->
+          <!-- <img src="img/logos/visa.png" alt="Visa logo"> -->
         </div>
         <img src="img/chip-tarjeta.png" alt="Chip tarjeta" class="chip">
         <div class="datos">
           <div class="grupo" id="numero">
-            <p class="label">Numero Tarjeta</p>
+            <p class="label">Card Number</p>
             <p class="numero">#### #### #### ####</p>
           </div>
           <div class="flexbox">
             <div class="grupo" id="nombre">
-              <p class="label">Nombre Tarjeta</p>
+              <p class="label">Card Name</p>
               <p class="nombre">Jhon Doe</p>
             </div>
 
             <div class="grupo" id="expiracion">
-              <p class="label">Expiracion</p>
+              <p class="label">Expiration</p>
               <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
             </div>
           </div>
@@ -40,10 +41,6 @@
       <div class="trasera">
         <div class="barra-magnetica"></div>
         <div class="datos">
-          <div class="grupo" id="firma">
-            <p class="label">Firma</p>
-            <div class="firma"><p></p></div>
-          </div>
           <div class="grupo" id="ccv">
             <p class="label">CCV</p>
             <p class="ccv"></p>
@@ -52,40 +49,40 @@
         <p class="leyenda">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ad cupiditate asperiores!
         </p>
-        <a href="#" class="link-banco">www.tubanco.com</a>
+        <a href="#" class="link-banco">www.bankx.com</a>
       </div>
     </section>
 
     <!-- Contenedor boton abrir formulario -->
-    <div class="contenedor-btn">
+    <!-- <div class="contenedor-btn">
       <button class="btn-abrir-formulario" id="btn-abrir-formulario">
         <i class="fa-solid fa-plus"></i>
       </button>
-    </div>
+    </div> -->
 
     <!-- Formulario -->
-    <form action="" id="form-tarjeta" class="form-tarjeta">
+    <form id="form-tarjeta" class="form-tarjeta">
       <div class="grupo">
-        <label for="inputNumero">Numero Tarjeta</label>
-        <input type="text" name="input-numero" id="inputNumero" maxlength="19" autocomplete="off">
+        <label for="inputNumero">Card Number</label>
+        <input type="text" id="inputNumero" maxlength="19" autocomplete="off">
       </div>
       <div class="grupo">
-        <label for="inputNombre">Nombre Tarjeta</label>
-        <input type="text" name="input-nombre" id="inputNombre" maxlength="19" autocomplete="off">
+        <label for="inputNombre">Card Name</label>
+        <input type="text" id="inputNombre" maxlength="19" autocomplete="off">
       </div>
       <div class="flexbox">
         <div class="grupo expira">
-          <label for="selectMes">Expiracion</label>
+          <label for="selectMes">Expiration</label>
           <div class="flexbox">
             <div class="grupo-select">
-              <select name="mes" id="selectMes">
-                <option disabled selected>Mes</option>
+              <select id="selectMes">
+                <option disabled selected>Month</option>
               </select>
               <i class="fa-solid fa-angle-down"></i>
             </div>
             <div class="grupo-select">
-              <select name="year" id="selectYear">
-                <option disabled selected>Año</option>
+              <select id="selectYear">
+                <option disabled selected>Year</option>
               </select>
               <i class="fa-solid fa-angle-down"></i>
             </div>
@@ -94,10 +91,10 @@
 
         <div class="grupo ccv">
           <label for="inputCCV">CCV</label>
-          <input type="text" name="ccv" id="inputCCV" maxlength="3">
+          <input type="text" id="inputCCV" maxlength="3">
         </div>
       </div>
-      <button type="submit" class="btn-enviar">Enviar</button>
+      <input type="submit" value="Send" class="btn-enviar" id="btn-enviar">
     </form>
 
   </div>
