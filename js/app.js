@@ -4,6 +4,7 @@
 const cardsContainer = document.querySelector('.cards');
 const buttonContainer = document.querySelector('.buttons');
 const mainTitle = document.querySelector('.main__title');
+const bagIcon = document.querySelector('.bag__button');
 const notificationNumber = document.querySelector('.notification span');
 
 
@@ -52,7 +53,6 @@ function renderCategorieBtn(data) {
       let text = e.target.innerText;
       text = text[0].toLowerCase() + text.slice(1);
       text = text.replace(' ', '-');
-      console.log(categorieName);
       filterByCategorie(text, categorieName);
       // add "buttons__categories--active"
       addBtnActiveClass(e, categorieName);
@@ -150,7 +150,7 @@ function showProductsCards(products) {
     // price__discount
     const priceDiscount = document.createElement('p');
     priceDiscount.classList.add('price__discount');
-    priceDiscount.innerHTML = `$ <span>${discountPercentage}</span>`;
+    priceDiscount.innerHTML = `<span>${discountPercentage}</span>% off`;
 
     // card__btn
     const cardBtn = document.createElement('button');
@@ -160,6 +160,7 @@ function showProductsCards(products) {
     cardBtn.onclick = (e) => {
       const idButton = parseInt(e.target.dataset.id);
       addToCart(idButton, products);
+      animateBagIcon();
     }
 
     cardTextsDiv.appendChild(cardTitle);
@@ -175,6 +176,13 @@ function showProductsCards(products) {
 
     cardsContainer.appendChild(card);
   });
+}
+
+function animateBagIcon() {
+  bagIcon.style.scale = '1.1';
+  setInterval(() => {
+    bagIcon.style.scale = '1';
+  }, 100);
 }
 
 // function showToastNotification() {
@@ -228,16 +236,16 @@ function addToCart(idButton, products) {
 
   updateNotificationNumber();
 
-  guardarLocalStorage();
+  saveLocalStorage();
 }
 
-function guardarLocalStorage() {
+function saveLocalStorage() {
   localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
 }
 
 function updateNotificationNumber() {
-  let nuevoNumerito = cart.reduce((acc, product) => acc + product[1], 0);
-  notificationNumber.innerHTML = `${nuevoNumerito}`;
+  let number = cart.reduce((acc, product) => acc + product[1], 0);
+  notificationNumber.innerHTML = `${number}`;
 }
 
 function cleanHTML() {
