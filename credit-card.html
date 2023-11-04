@@ -94,9 +94,19 @@
           <input type="text" id="inputCCV" maxlength="3">
         </div>
       </div>
-      <input type="submit" value="Send" class="btn-enviar" id="btn-enviar">
+      <p class="error" id="error">All fields are required</p>
+      <button type="submit" class="btn-enviar" id="btn-enviar">Send</button>
     </form>
 
+  </div>
+
+  <div class="modal-validation" id="modal-validation">
+    <div class="modal__card">
+      <i class="fa-solid fa-circle-check"></i>
+      <h2>Successful payment</h2>
+      <p>Thank you very much for your purchase!</p>
+      <button id="continue-btn">Continue shopping</button>
+    </div>
   </div>
   
   <script src="https://kit.fontawesome.com/1d47c3ee1f.js" crossorigin="anonymous"></script>

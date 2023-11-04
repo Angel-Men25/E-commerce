@@ -6,7 +6,9 @@ const logoMarca = document.querySelector('#logo-marca');
 const mesExpiracion = document.querySelector('#tarjeta #expiracion .mes');
 const yearExpiracion = document.querySelector('#tarjeta #expiracion .year');
 const ccv = document.querySelector('#tarjeta .ccv');
-const btnEnviar = document.querySelector('#btn-enviar');
+const mensajeError = document.querySelector('#error');
+const modalDiv = document.querySelector('#modal-validation');
+const continueBtn = document.querySelector('#continue-btn');
 
 // rotacion de la tarjeta
 tarjeta.addEventListener('click', () => {
@@ -31,6 +33,14 @@ for (let i = actualYear; i <= maxYear; i++) {
   form.selectYear.appendChild(option);
 }
 
+let inputs = {
+  numeroTarjeta: '',
+  nombreTarjeta: '',
+  mesExpiracion: '',
+  yearExpiracion: '',
+  ccv: ''
+}
+
 // input numero de tarjeta
 form.inputNumero.addEventListener('keyup', (e) => {
   let valorInput = e.target.value;
@@ -45,6 +55,7 @@ form.inputNumero.addEventListener('keyup', (e) => {
     .trim();
 
   numeroTarjeta.textContent = valorInput;
+  inputs.numeroTarjeta = valorInput;
 
   if (valorInput == '') {
     numeroTarjeta.textContent = '#### #### #### ####';
@@ -78,6 +89,7 @@ form.inputNombre.addEventListener('keyup', (e) => {
 
   form.inputNombre.value = valorInput.replace(/[0-9]/g, '');
   nombreTarjeta.textContent = valorInput;
+  inputs.nombreTarjeta = valorInput;
 
   if (nombreTarjeta.textContent == '') {
     nombreTarjeta.textContent = 'Jhon Doe';
@@ -88,11 +100,13 @@ form.inputNombre.addEventListener('keyup', (e) => {
 
 form.selectMes.addEventListener('change', (e) => {
   mesExpiracion.textContent = e.target.value;
+  inputs.mesExpiracion = e.target.value;
   mostrarFrenteTarjeta();
 })
 
 form.selectYear.addEventListener('change', (e) => {
   yearExpiracion.textContent = e.target.value.slice(2);
+  inputs.yearExpiracion = e.target.value;
   mostrarFrenteTarjeta();
 })
 
@@ -108,11 +122,27 @@ form.inputCCV.addEventListener('keyup', (e) => {
   .replace(/\D/g, '');
 
   ccv.textContent = form.inputCCV.value;
+  inputs.ccv = form.inputCCV.value;
 })
 
-btnEnviar.addEventListener('submit', validarFormulario)
+form.addEventListener('submit', validateForm)
 
-function validarFormulario(e) {
+function validateForm(e) {
   e.preventDefault();
-  console.log('enviando...');
+  console.log(inputs.numeroTarjeta.length);
+  if (!Object.values(inputs).every(input => input !== '')) {
+    mensajeError.classList.add('active');
+    setInterval(() => {
+      mensajeError.classList.remove('active');
+    }, 3000);
+    return;
+  }
+  modalDiv.classList.add('active');
+  document.body.classList.add('no-scroll');
 }
+
+continueBtn.addEventListener('click', () => {
+  window.location.href = '../index.html';
+  modalDiv.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+})

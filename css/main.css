@@ -339,25 +339,3 @@ body {
 .delete__btn:hover {
   text-decoration: underline;
 }
-
-/* MODAL */
-
-.modal-validation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.322);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.modal__card {
-  background-color: var(--white);
-  max-width: max-content;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 6rem;
-}
