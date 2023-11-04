@@ -147,6 +147,8 @@ body {
   width: 100%;
   padding: 3.5rem 0;
   background-color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
 }
 
 .main__title {
@@ -154,6 +156,24 @@ body {
   margin-left: 5rem;
   margin-bottom: 2rem;
   color: var(--windsor);
+}
+
+.main__empty--div {
+  text-align: center;
+  margin-top: 4rem;
+  display: none;
+}
+.empty__img {
+  width: 100%;
+  max-width: 350px;
+}
+.empty__p {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  color: var(--windsor);
+}
+.main__empty--div.active {
+  display: block;
 }
 
 /* CARDS */
@@ -252,7 +272,8 @@ body {
 }
 
 .info__btn {
-  color: #fff;
+  width: 100%;
+  color: var(--white);
   cursor: pointer;
   border: none;
   padding: 0.6rem 0.8rem;
@@ -260,6 +281,9 @@ body {
   border-radius: 5px;
   background-color: var(--windsor);
   transition: all 0.2s linear;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 .info__btn:hover {
   background-color: var(--pig);
@@ -269,6 +293,29 @@ body {
 }
 .info__btn:nth-child(5) {
   margin-top: 1rem;
+}
+#emptyBtn {
+  background-color: var(--lavender);
+  color: var(--windsor);
+  border: 2px solid var(--windsor);
+}
+.info__group--last {
+  border-top: 2px solid #342a5574;
+}
+#payBtn {
+  margin-top: 1rem;
+}
+.info__btn.disabled {
+  cursor: not-allowed;
+  background-color: #97969752;
+  color: #ffffff7a;
+  border: none;
+}
+.info__btn.disabled:hover {
+  background: #97969752;
+  color: #ffffff7a;
+  font-weight: 500;
+  border: none;
 }
 
 .cart__container {

@@ -159,8 +159,10 @@ function showProductsCards(products) {
     cardBtn.innerText = 'Add to cart';
     cardBtn.onclick = (e) => {
       const idButton = parseInt(e.target.dataset.id);
+      const addToCartBtn = e.target;
       addToCart(idButton, products);
-      animateBagIcon();
+      animateBagIcon(bagIcon);
+      animateBagIcon(addToCartBtn);
     }
 
     cardTextsDiv.appendChild(cardTitle);
@@ -178,10 +180,10 @@ function showProductsCards(products) {
   });
 }
 
-function animateBagIcon() {
-  bagIcon.style.scale = '1.1';
+function animateBagIcon(item) {
+  item.style.scale = '1.1';
   setInterval(() => {
-    bagIcon.style.scale = '1';
+    item.style.scale = '1';
   }, 100);
 }
 
@@ -225,13 +227,11 @@ function addToCart(idButton, products) {
 
   if (cart.some(product => product[0].id === idButton)) {
     // if already exists on the "cart array", only increase the product amount
-    console.log('The product is already in the cart');
     const productToAmount = cart.find(product => product[0].id === idButton);
     productToAmount[1] ++;
   } else {
     // if it doesnt exist, then add
     cart = [...cart, [addedProduct, 1]];
-    console.log('Product added correctly');
   }
 
   updateNotificationNumber();

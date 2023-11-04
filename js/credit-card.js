@@ -1,3 +1,6 @@
+cart = JSON.parse(localStorage.getItem('productos-en-carrito'));
+console.log(cart);
+
 const tarjeta = document.querySelector('#tarjeta');
 const form = document.querySelector('#form-tarjeta');
 const numeroTarjeta = document.querySelector('#tarjeta .numero');
@@ -129,20 +132,37 @@ form.addEventListener('submit', validateForm)
 
 function validateForm(e) {
   e.preventDefault();
-  console.log(inputs.numeroTarjeta.length);
-  if (!Object.values(inputs).every(input => input !== '')) {
-    mensajeError.classList.add('active');
+  if (Object.values(inputs).every(input => input !== '')) {
+    if (inputs.numeroTarjeta.length == 19) {
+      // purchase succesfuly
+      modalDiv.classList.add('active');
+      document.body.classList.add('no-scroll');
+      return;
+    }
+    // card number field incorrectly
+    form.inputNumero.style.border = '2px solid red';
     setInterval(() => {
-      mensajeError.classList.remove('active');
+      form.inputNumero.style.border = '2px solid #ced6e0';
     }, 3000);
     return;
-  }
-  modalDiv.classList.add('active');
-  document.body.classList.add('no-scroll');
+    }
+  
+  // error message
+  mensajeError.classList.add('active');
+  setInterval(() => {
+    mensajeError.classList.remove('active');
+  }, 3000);
 }
 
 continueBtn.addEventListener('click', () => {
   window.location.href = '../index.html';
   modalDiv.classList.remove('active');
   document.body.classList.remove('no-scroll');
+  // remove all items from "cart"
+  cart.length = 0;
+  saveLocalStorage();
 })
+
+function saveLocalStorage() {
+  localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+}

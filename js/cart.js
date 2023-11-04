@@ -10,14 +10,23 @@ const subtotalSpan = document.getElementById('subtotal');
 const emptyBtn = document.getElementById('emptyBtn');
 const payBtn = document.getElementById('payBtn');
 
+const emptyCartDiv = document.querySelector('#main__empty--div');
+
 emptyBtn.addEventListener('click', emptyCart);
 
 function loadCart() {
   if (cart.length >= 1) {
     showCartProductsHTML();
+    // remove "disabled" classlist to payBtn
+    payBtn.classList.remove('disabled');
+    // no image when the cart has products
+    emptyCartDiv.classList.remove('active');
   } else {
-    console.log('no hay productos');
     showCartProductsHTML();
+    // add "disabled" classlist to payBtn
+    payBtn.classList.add('disabled');
+    // image when the cart has no products
+    emptyCartDiv.classList.add('active');
   }
 }
 
@@ -158,8 +167,7 @@ function cleanHTMLCart() {
 payBtn.addEventListener('click', () => {
   if(cart.length >= 1) {
     window.location.href = '../credit-card.html';
-  } else {
-    console.log('no puede continuar la compra');
+    return;
   }
 })
 

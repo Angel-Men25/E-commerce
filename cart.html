@@ -39,13 +39,25 @@
             <p>Subtotal</p>
             <span id="subtotal">$0</span>
           </div>
-          <button class="info__btn" id="emptyBtn">Empty cart</button>
-          <button class="info__btn" id="payBtn">Pay</button>
+          <button class="info__btn" id="emptyBtn">
+            <i class="fa-solid fa-trash"></i>
+            Empty cart
+          </button>
+          <div class="info__group info__group--last">
+            <button class="info__btn" id="payBtn">
+              <i class="fa-solid fa-credit-card"></i>
+              Pay
+            </button>
+          </div>
         </div>
       </section>
     </aside>
     <main class="main">
       <h2 class="main__title">Cart</h2>
+      <div class="main__empty--div" id="main__empty--div">
+        <img src="./img/empty-cart.svg" alt="Empty cart" class="empty__img">
+        <p class="empty__p">No products in the cart</p>
+      </div>
       <section class="cart__container">
 
         <!-- <div class="cart__card">
