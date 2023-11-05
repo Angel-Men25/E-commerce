@@ -7,132 +7,77 @@
   <title>Tienda</title>
   <!-- CSS -->
   <link rel="stylesheet" href="css/normalize.css">
-  <!-- <link rel="stylesheet" href="css/style.css"> -->
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/media-queries.css">
 </head>
 
 <body>
 
-  <a href="./cart.html" class="bag__button">
-    <i class="fa-solid fa-bag-shopping"></i>
-    <div class="notification">
-      <span>0</span>
+  <div class="wrapper">
+    <a href="./cart.html" class="bag__button">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="notification">
+        <span>0</span>
+      </div>
+    </a>
+  
+    <div class="container">
+      <aside class="aside">
+        <button class="open-categories" id="open-categories">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <header class="header">
+          <h1 class="logo">AV Store</h1>
+        </header>
+        <section class="buttons__container">
+          <h3 class="categories__title">Categories</h3>
+          <div class="buttons">
+            <!-- <button class="buttons__categories">Smartphones</button>
+            <button class="buttons__categories">Laptops</button>
+            <button class="buttons__categories">Fragrances</button>
+            <button class="buttons__categories">Skincare</button>
+            <button class="buttons__categories">Groceries</button>
+            <button class="buttons__categories">Home decoration</button>
+            <button class="buttons__categories">Furniture</button>
+            <button class="buttons__categories">Tops</button>
+            <button class="buttons__categories">Womens dresses</button>
+            <button class="buttons__categories">Womens shoes</button>
+            <button class="buttons__categories">Mens shirts</button>
+            <button class="buttons__categories">Mens shoes</button>
+            <button class="buttons__categories">Mens watches</button>
+            <button class="buttons__categories">Womens watches</button>
+            <button class="buttons__categories">Womens bags</button>
+            <button class="buttons__categories">Womens jewellery</button>
+            <button class="buttons__categories">Sunglasses</button>
+            <button class="buttons__categories">Automotive</button>
+            <button class="buttons__categories">Motorcycle</button>
+            <button class="buttons__categories">Lighting</button> -->
+          </div>
+        </section>
+      </aside>
+      <main class="main">
+        <h2 class="main__title">All products</h2>
+        <section class="cards">
+          <!-- <div class="card">
+            <img class="card__img" src="https://i.dummyjson.com/data/products/1/thumbnail.jpg">
+            <div class="card__texts">
+              <p class="card__title">Microsoft Surface Laptop 4</p>
+              <p class="card__prev-price">$<span>499</span></p>
+              <div class="card__prices">
+                <p class="price__act">$<span>446.2</span></p>
+                <p class="price__discount"><span>10.58</span>% off</p>
+              </div>
+              <button class="card__btn">Add to cart</button>
+            </div>
+          </div> -->
+        </section>
+      </main>
     </div>
-  </a>
-
-  <div class="container">
-    <aside class="aside">
-      <header class="header">
-        <h1 class="logo">LOGO</h1>
-      </header>
-      <section class="buttons__container">
-        <h3 class="categories__title">Categories</h3>
-        <div class="buttons">
-          <!-- <button class="buttons__categories">Smartphones</button>
-          <button class="buttons__categories">Laptops</button>
-          <button class="buttons__categories">Fragrances</button>
-          <button class="buttons__categories">Skincare</button>
-          <button class="buttons__categories">Groceries</button>
-          <button class="buttons__categories">Home decoration</button>
-          <button class="buttons__categories">Furniture</button>
-          <button class="buttons__categories">Tops</button>
-          <button class="buttons__categories">Womens dresses</button>
-          <button class="buttons__categories">Womens shoes</button>
-          <button class="buttons__categories">Mens shirts</button>
-          <button class="buttons__categories">Mens shoes</button>
-          <button class="buttons__categories">Mens watches</button>
-          <button class="buttons__categories">Womens watches</button>
-          <button class="buttons__categories">Womens bags</button>
-          <button class="buttons__categories">Womens jewellery</button>
-          <button class="buttons__categories">Sunglasses</button>
-          <button class="buttons__categories">Automotive</button>
-          <button class="buttons__categories">Motorcycle</button>
-          <button class="buttons__categories">Lighting</button> -->
-        </div>
-      </section>
-    </aside>
-    <main class="main">
-      <h2 class="main__title">All products</h2>
-      <section class="cards">
-        <!-- <div class="card">
-          <img class="card__img" src="https://i.dummyjson.com/data/products/1/thumbnail.jpg">
-          <div class="card__texts">
-            <p class="card__title">Microsoft Surface Laptop 4</p>
-            <p class="card__prev-price">$<span>499</span></p>
-            <div class="card__prices">
-              <p class="price__act">$<span>446.2</span></p>
-              <p class="price__discount"><span>10.58</span>% off</p>
-            </div>
-            <button class="card__btn">Add to cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="https://i.dummyjson.com/data/products/2/thumbnail.jpg">
-          <div class="card__texts">
-            <p class="card__title">Freckle Treatment Cream- 15gm</p>
-            <p class="card__prev-price">$<span>499</span></p>
-            <div class="card__prices">
-              <p class="price__act">$<span>446.2</span></p>
-              <p class="price__discount"><span>10.58</span>% off</p>
-            </div>
-            <button class="card__btn">Add to cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="https://i.dummyjson.com/data/products/3/thumbnail.jpg">
-          <div class="card__texts">
-            <p class="card__title">3D Embellishment Art Lamp</p>
-            <p class="card__prev-price">$<span>499</span></p>
-            <div class="card__prices">
-              <p class="price__act">$<span>446.2</span></p>
-              <p class="price__discount"><span>10.58</span>% off</p>
-            </div>
-            <button class="card__btn">Add to cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="https://i.dummyjson.com/data/products/4/thumbnail.jpg">
-          <div class="card__texts">
-            <p class="card__title">iPhone 9</p>
-            <p class="card__prev-price">$<span>499</span></p>
-            <div class="card__prices">
-              <p class="price__act">$<span>446.2</span></p>
-              <p class="price__discount"><span>10.58</span>% off</p>
-            </div>
-            <button class="card__btn">Add to cart</button>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__img" src="https://i.dummyjson.com/data/products/5/thumbnail.jpg">
-          <div class="card__texts">
-            <p class="card__title">Huawei P30</p>
-            <p class="card__prev-price">$<span>499</span></p>
-            <div class="card__prices">
-              <p class="price__act">$<span>446.2</span></p>
-              <p class="price__discount"><span>10.58</span>%</p>
-            </div>
-            <button class="card__btn">ADD TO CART</button>
-          </div>
-        </div> -->
-      </section>
-    </main>
   </div>
 
-  <!-- <div class="toast">
-    <div class="toast__content">
-      <i class="fa-solid fa-check toast__icon--check"></i>
-      <div class="message">
-        <span class="text">Product added correctly</span>
-      </div>
-      <i class="fa-solid fa-xmark toast__icon--close"></i>
-    </div>
-    <div class="progress"></div>
-  </div> -->
 
-  <!-- <button class="button">SHOW TOAST</button> -->
 
   <script src="js/app.js"></script>
-  <!-- <script src="js/menu.js"></script> -->
   <!-- <script src="js/toast.js"></script> -->
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/1d47c3ee1f.js" crossorigin="anonymous"></script>

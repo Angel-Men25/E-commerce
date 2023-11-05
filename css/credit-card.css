@@ -308,9 +308,3 @@ body {
 .modal__card button:hover {
   background-color: #9da3f8;
 }
-
-/* NO-SCROLL */
-.no-scroll {
-  max-height: 100vh;
-  overflow: hidden;
-}

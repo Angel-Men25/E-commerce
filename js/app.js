@@ -7,9 +7,25 @@ const mainTitle = document.querySelector('.main__title');
 const bagIcon = document.querySelector('.bag__button');
 const notificationNumber = document.querySelector('.notification span');
 
+const openCategoriesBtn = document.querySelector('#open-categories');
+const menuCategories = document.querySelector('.buttons__container');
+
+openCategoriesBtn.addEventListener('click', () => {
+  menuCategories.classList.toggle('show');
+  document.body.classList.toggle('no-scroll');
+})
+
 
 document.addEventListener('DOMContentLoaded', fetchCategories);
 document.addEventListener('DOMContentLoaded', fetchAllProducts);
+document.addEventListener('DOMContentLoaded', detectViewport);
+
+// detect viweport to style "bagIcon" button
+function detectViewport() {
+  if (screen.width > 1536) {
+    bagIcon.style.position = 'absolute';
+  }
+}
 
 // array for the categorie's name
 let categories = [];
@@ -88,6 +104,8 @@ async function filterByCategorie(text) {
     const data = await response.json();
     // console.log(data.products);
     showProductsCards(data.products);
+    menuCategories.classList.remove('show');
+    document.body.classList.remove('no-scroll');
   } catch (error) {
     console.log(error);
   }
@@ -253,3 +271,25 @@ function cleanHTML() {
     cardsContainer.removeChild(cardsContainer.firstChild);
   }
 }
+
+
+// ==========
+
+function getViewPortWidth() {
+	var viewportwidth;
+	// the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
+	if (typeof window.innerWidth != 'undefined') {
+		viewportwidth = window.innerWidth;
+		// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+	} else if (typeof document.documentElement != 'undefined'   && typeof document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0) {
+		viewportwidth = document.documentElement.clientWidth;
+		// older versions of IE
+	} else {
+    viewportwidth = document.getElementsByTagName('body')[0].clientWidth;
+	}
+	return viewportwidth;
+}
+
+// console.log(getViewPortWidth());
+// console.log(screen.width);
+
