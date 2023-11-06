@@ -123,18 +123,6 @@ function showProductsCards(products) {
     
     const card = document.createElement('div');
     card.classList.add('card');
-    // card.innerHTML = `
-    // <img class="card__img" src="${thumbnail}" alt="${title}">
-    // <div class="card__texts">
-    //   <p class="card__title">${title}</p>
-    //   <p class="card__prev-price">$<span>${price}</span></p>
-    //   <div class="card__prices">
-    //     <p class="price__act">$<span>${total}</span></p>
-    //     <p class="price__discount"><span>${discountPercentage}</span>% off</p>
-    //   </div>
-    //   <button class="card__btn" id="${id}">Add to cart</button>
-    // </div>
-    // `
 
     // card__img
     const cardImg = document.createElement('img');
@@ -205,30 +193,6 @@ function animateBagIcon(item) {
   }, 100);
 }
 
-// function showToastNotification() {
-//   const toast = document.querySelector('.toast');
-//   const closeIcon = document.querySelector('.toast__icon--close');
-//   const progress = document.querySelector('.progress');
-
-//   toast.classList.add('active');
-//   progress.classList.add('active');
-//   setTimeout(() => {
-//     toast.classList.remove('active');
-//   }, 5000);
-//   setTimeout(() => {
-//     progress.classList.remove('active');
-//   }, 5300);
-
-//   closeIcon.addEventListener('click', () => {
-//     toast.classList.remove('active');
-
-//     setTimeout(() => {
-//       toast.classList.remove('active');
-//     }, 300);
-//   })
-// }
-
-
 // CART
 
 let cart = [];
@@ -271,25 +235,3 @@ function cleanHTML() {
     cardsContainer.removeChild(cardsContainer.firstChild);
   }
 }
-
-
-// ==========
-
-function getViewPortWidth() {
-	var viewportwidth;
-	// the more standards compliant browsers (mozilla/netscape/opera/IE7) use window.innerWidth and window.innerHeight
-	if (typeof window.innerWidth != 'undefined') {
-		viewportwidth = window.innerWidth;
-		// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
-	} else if (typeof document.documentElement != 'undefined'   && typeof document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0) {
-		viewportwidth = document.documentElement.clientWidth;
-		// older versions of IE
-	} else {
-    viewportwidth = document.getElementsByTagName('body')[0].clientWidth;
-	}
-	return viewportwidth;
-}
-
-// console.log(getViewPortWidth());
-// console.log(screen.width);
-

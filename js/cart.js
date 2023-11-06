@@ -40,10 +40,10 @@ function showCartProductsHTML() {
 
   cart.forEach(product => {
     let total = ((100 - product[0].discountPercentage) / 100) * product[0].price;
-    total = parseFloat(total.toFixed(2));
+    total = toFixedNumber(total);
 
     let subtotalProduct = total * product[1];
-    subtotalProduct = parseFloat(subtotalProduct.toFixed(2));
+    subtotalProduct = toFixedNumber(subtotalProduct);
 
     calculatedDiscount = ((product[0].price * product[0].discountPercentage)/100);
 
@@ -120,9 +120,9 @@ function showCartProductsHTML() {
     subtotal += total * product[1];
   });
 
-  totalWithoutDiscount = parseFloat(totalWithoutDiscount.toFixed(2));
-  discount = parseFloat(discount.toFixed(2));
-  subtotal = parseFloat(subtotal.toFixed(2));
+  totalWithoutDiscount = toFixedNumber(totalWithoutDiscount);
+  discount = toFixedNumber(discount);
+  subtotal = toFixedNumber(subtotal);
   updatePurchaseInfo(totalWithoutDiscount, discount, subtotal);
 }
 
@@ -170,5 +170,10 @@ payBtn.addEventListener('click', () => {
     return;
   }
 })
+
+function toFixedNumber(number) {
+  number = parseFloat(number.toFixed(2));
+  return number;
+}
 
 loadCart();
