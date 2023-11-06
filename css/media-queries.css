@@ -315,3 +315,116 @@
     font-size: 1.3rem;
   }
 }
+
+/* ---------- credit-card.html ---------- */
+@media screen and (max-width: 700px) {
+  .contenedor {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  /* tarjeta */
+  .tarjeta {
+    width: 90%;
+  }
+  .tarjeta > div {
+    padding: 1rem;
+    height: 250px;
+  }
+  .delantera .grupo .label {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+  .delantera .grupo .numero,
+  .delantera .grupo .nombre,
+  .delantera .grupo .expiracion {
+  	font-size: 20px;
+  }
+  /* form tarjeta */
+  .form-tarjeta .flexbox {
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-tarjeta .ccv {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  /* tarjeta */
+  .tarjeta > div {
+    padding: 1rem;
+    height: 220px;
+  }
+  .delantera .chip {
+    display: none;
+    margin-bottom: 0;
+  }
+  .delantera .grupo .label {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+  .delantera .grupo .numero,
+  .delantera .grupo .nombre,
+  .delantera .grupo .expiracion {
+  	font-size: 18px;
+  }
+  .delantera .flexbox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+  }
+  /* trasera */
+  .trasera .barra-magnetica {
+    height: 32px;
+    top: 25px;
+  }
+  .trasera .datos {
+    margin-top: 50px;
+  }
+  .trasera .leyenda {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  /* form tarjeta */
+  .form-tarjeta .flexbox {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-tarjeta .ccv {
+    width: 100%;
+  }
+  /* modal validation */
+  .modal__card {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  /* tarjeta */
+  .tarjeta > div {
+    padding: 1rem;
+    height: 210px;
+  }
+  .delantera .grupo .numero,
+  .delantera .grupo .nombre,
+  .delantera .grupo .expiracion {
+  	font-size: 16px;
+  }
+  /* tresera */
+  .trasera .barra-magnetica {
+    height: 25px;
+    top: 20px;
+  }
+  .trasera .datos {
+    margin-top: 35px;
+  }
+  .trasera .datos #ccv .ccv {
+    height: 30px;
+    padding-top: 6px;
+  }
+  .trasera .leyenda{
+    line-height: 16px;
+  }
+}
