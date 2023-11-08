@@ -1,4 +1,4 @@
-cart = JSON.parse(localStorage.getItem('productos-en-carrito'));
+cart = JSON.parse(localStorage.getItem('cartProducts'));
 
 const productsCartContainer = document.querySelector('.cart__container');
 
@@ -155,7 +155,7 @@ function emptyCart() {
 }
 
 function saveLocalStorage() {
-  localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+  localStorage.setItem('cartProducts', JSON.stringify(cart));
 }
 
 function cleanHTMLCart() {

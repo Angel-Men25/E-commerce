@@ -196,7 +196,7 @@ function animateBagIcon(item) {
 // CART
 
 let cart = [];
-let cartLS = JSON.parse(localStorage.getItem('productos-en-carrito'));
+let cartLS = JSON.parse(localStorage.getItem('cartProducts'));
 if (cartLS) {
   cart = cartLS;
   updateNotificationNumber();
@@ -222,7 +222,7 @@ function addToCart(idButton, products) {
 }
 
 function saveLocalStorage() {
-  localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+  localStorage.setItem('cartProducts', JSON.stringify(cart));
 }
 
 function updateNotificationNumber() {
