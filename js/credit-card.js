@@ -1,5 +1,4 @@
-cart = JSON.parse(localStorage.getItem('productos-en-carrito'));
-console.log(cart);
+cart = JSON.parse(localStorage.getItem('cartProducts'));
 
 const tarjeta = document.querySelector('#tarjeta');
 const form = document.querySelector('#form-tarjeta');
@@ -10,6 +9,7 @@ const mesExpiracion = document.querySelector('#tarjeta #expiracion .mes');
 const yearExpiracion = document.querySelector('#tarjeta #expiracion .year');
 const ccv = document.querySelector('#tarjeta .ccv');
 const mensajeError = document.querySelector('#error');
+const sendBtn = document.querySelector('#btn-send');
 const modalDiv = document.querySelector('#modal-validation');
 const continueBtn = document.querySelector('#continue-btn');
 
@@ -135,8 +135,29 @@ function validateForm(e) {
   if (Object.values(inputs).every(input => input !== '')) {
     if (inputs.numeroTarjeta.length == 19) {
       // purchase succesfuly
-      modalDiv.classList.add('active');
-      document.body.classList.add('no-scroll');
+      // active spinner
+      sendBtn.innerHTML = `
+        <div class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      `
+      // after 2 seconds active modal-validation
+      setTimeout(() => {
+        sendBtn.innerText = 'Send';
+        modalDiv.classList.add('active');
+        document.body.classList.add('no-scroll');
+      }, 2000);
       return;
     }
     // card number field incorrectly
@@ -164,5 +185,5 @@ continueBtn.addEventListener('click', () => {
 })
 
 function saveLocalStorage() {
-  localStorage.setItem('productos-en-carrito', JSON.stringify(cart));
+  localStorage.setItem('cartProducts', JSON.stringify(cart));
 }
