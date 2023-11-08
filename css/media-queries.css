@@ -407,10 +407,14 @@
     padding: 1rem;
     height: 210px;
   }
+  .delantera .grupo .label {
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
   .delantera .grupo .numero,
   .delantera .grupo .nombre,
   .delantera .grupo .expiracion {
-  	font-size: 16px;
+  	font-size: 14px;
   }
   /* tresera */
   .trasera .barra-magnetica {
