@@ -126,6 +126,7 @@ function showProductsCards(products) {
 
     // card__img
     const cardImg = document.createElement('img');
+    cardImg.loading = 'lazy';
     cardImg.classList.add('card__img');
     cardImg.src = thumbnail;
     cardImg.alt = title;
