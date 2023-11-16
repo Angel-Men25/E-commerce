@@ -78,6 +78,7 @@
     right: 0;
     width: 100%;
     align-items: center;
+    z-index: 90;
   }
   /* LOGO */
   .logo {
@@ -270,7 +271,7 @@
     padding: 2rem 0;
   }
   .header-cart {
-    display: none;
+    margin-bottom: 2rem;
   }
   .main__empty--div {
     margin: 0 2rem;
