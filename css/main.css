@@ -12,7 +12,6 @@
 
 body {
   height: 100vh;
-  background-color: rgba(219, 220, 243, 0.555);
   background-color: var(--lavender);
 }
 
@@ -34,7 +33,6 @@ body {
   top: 0;
   right: 0;
   margin: 3rem 3rem 0 0;
-  /* margin: 3rem 18% 0 0; */
   color: var(--windsor);
   font-size: 2.5rem;
   width: 55px;
@@ -92,6 +90,7 @@ body {
 .open-categories {
   display: none;
   pointer-events: none;
+  color: var(--windsor);
 }
 
 /* LOGO */
@@ -259,9 +258,22 @@ body {
 }
 .card__btn:hover {
   opacity: 0.9;
+  z-index: 1;
 }
 
 /* CART.HTML */
+
+.home-btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--windsor);
+}
+.home-btn i {
+  margin-top: 1rem;
+  font-size: 20px;
+}
 
 .info {
   width: 100%;
@@ -400,79 +412,4 @@ body {
 .no-scroll {
   max-height: 100vh;
   overflow: hidden;
-}
-
-/* alalalalaal */
-@media screen and (max-width: 840px) {
-  .bag__button {
-    z-index: 100;
-    margin: 18px 1.5rem 0 0;
-  }
-  /* CONTAINER */
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: min-content 1fr;
-  }
-  .aside {
-    padding: 1.5rem;
-    height: min-content;
-    position: sticky;
-    bottom: 0;
-    top: 0;
-    right: 0;
-    width: 100%;
-    align-items: center;
-  }
-  /* LOGO */
-  .logo {
-    margin: 0;
-  }
-  /* CATEGORIES BUTTON */
-  .buttons__container {
-    width: 100%;
-    margin: 58px 0 1rem;
-    transition: all 0.4s ease;
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    position: fixed;
-    background-color: var(--lavender);
-    border-top: 2px solid rgba(219, 220, 243, 0.555);
-  }
-  .buttons__container.show {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-  .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0 1.5rem 2rem;
-    column-gap: 2rem;
-  }
-  .categories__title {
-    text-align: start;
-    margin: 1.5rem 1.5rem 1rem;
-    z-index: -1;
-  }
-  /* OPEN-CATEGORIES BUTTON */
-  .open-categories {
-    display: block;
-    border: none;
-    background: none;
-    font-size: 2rem;
-    position: absolute;
-    left: 1.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 3px 5px;
-    pointer-events: all;
-  }
-  .open-categories:hover {
-    background-color: var(--pig);
-  }
-  /* CARDS */
-  .cards {
-    margin: 0 3rem;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .main__title {
-    margin-left: 3rem;
-  }
 }
